@@ -55,6 +55,7 @@ const user = {
       const email = userInfo.email.trim();
       return new Promise((resolve, reject) => {
         loginByEmail(email, userInfo.password).then(response => {
+          debugger
           const data = response.data;
           setToken(response.data.token);
           commit('SET_TOKEN', data.token);

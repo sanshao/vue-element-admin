@@ -95,6 +95,8 @@
 
     # 构建生成环境
     npm run build:prod
+
+    scp -r /Users/sanshao/github/vue-element-admin/dist/*  root@114.55.106.92:~/programfiles/mf-admin/public/v2/
 ```
 
 ## 目录结构

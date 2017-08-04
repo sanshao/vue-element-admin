@@ -17,8 +17,8 @@
           登录
         </el-button>
       </el-form-item>
-      <div class='tips'>admin账号为:admin@wallstreetcn.com 密码随便填</div>
-      <div class='tips'>editor账号:editor@wallstreetcn.com 密码随便填</div>
+      <!-- <div class='tips'>admin账号为:admin@wallstreetcn.com 密码随便填</div>
+      <div class='tips'>editor账号:editor@wallstreetcn.com 密码随便填</div> -->
     </el-form>
 
     <el-dialog title="第三方验证" :visible.sync="showDialog">
@@ -38,11 +38,12 @@
     name: 'login',
     data() {
       const validateEmail = (rule, value, callback) => {
-        if (!isWscnEmail(value)) {
-          callback(new Error('请输入正确的合法邮箱'));
-        } else {
-          callback();
-        }
+        // if (!isWscnEmail(value)) {
+        //   callback(new Error('请输入正确的合法邮箱'));
+        // } else {
+        //   callback();
+        // }
+        callback();
       };
       const validatePass = (rule, value, callback) => {
         if (value.length < 6) {
@@ -53,8 +54,8 @@
       };
       return {
         loginForm: {
-          email: 'admin@wallstreetcn.com',
-          password: ''
+          email: 'admin@meifanapp.com',
+          password: '123456'
         },
         loginRules: {
           email: [
@@ -75,7 +76,7 @@
             this.loading = true;
             this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
               this.loading = false;
-              this.$router.push({ path: '/' });
+              this.$router.push({ path: '/feed/add' });
                 // this.showDialog = true;
             }).catch(() => {
               this.loading = false;

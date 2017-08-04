@@ -21,6 +21,11 @@ import errLog from 'store/errLog';// error log组件
 import './mock/index.js';  // 该项目所有请求使用mockjs模拟
 import { getToken } from 'utils/auth';
 
+// import Cookie  from "js-cookie";
+
+// // console.log('Cookie', Cookie)
+// Cookies.set(, token)
+
 // register globally
 Vue.component('multiselect', Multiselect);
 Vue.component('Sticky', Sticky);

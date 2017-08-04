@@ -2,6 +2,89 @@
  * Created by jiachenpan on 16/11/18.
  */
 
+ /**
+ * @param {Object} d  时间
+ * @param {Object} formatter "yyyy-MM-dd W hh:mm:ss" w:englist week W:chinese week
+ */
+Date.prototype.format = function(formatter) {
+    var d = this;
+    if (!formatter || formatter == "") {
+        formatter = "yyyy-MM-dd";
+    }
+    var lang = formatter.indexOf("W") > 0 ? "chi" : "eng";
+    var weekdays = {
+        chi : ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+        eng : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    };
+    var year = d.getFullYear().toString();
+    var month = (d.getMonth() + 1).toString();
+    var date = d.getDate().toString();
+    var day = d.getDay();
+    var hour = d.getHours().toString();
+    var minute = d.getMinutes().toString();
+    var second = d.getSeconds().toString();
+
+    var yearMarker = formatter.replace(/[^y|Y]/g, '');
+    if (yearMarker.length == 2) {
+        year = year.substring(2, 4);
+    } else if (yearMarker.length == 0) {
+        year = "";
+    }
+
+    var monthMarker = formatter.replace(/[^M]/g, '');
+    if (monthMarker.length > 1) {
+        if (month.length == 1) {
+            month = "0" + month;
+        }
+    } else if (monthMarker.length == 0) {
+        month = "";
+    }
+
+    var dateMarker = formatter.replace(/[^d]/g, '');
+    if (dateMarker.length > 1) {
+        if (date.length == 1) {
+            date = "0" + date;
+        }
+    } else if (dateMarker.length == 0) {
+        date = "";
+    }
+
+    var hourMarker = formatter.replace(/[^h]/g, '');
+    if (hourMarker.length > 1) {
+        if (hour.length == 1) {
+            hour = "0" + hour;
+        }
+    } else if (hourMarker.length == 0) {
+        hour = "";
+    }
+
+    var minuteMarker = formatter.replace(/[^m]/g, '');
+    if (minuteMarker.length > 1) {
+        if (minute.length == 1) {
+            minute = "0" + minute;
+        }
+    } else if (minuteMarker.length == 0) {
+        minute = "";
+    }
+
+    var secondMarker = formatter.replace(/[^s]/g, '');
+    if (secondMarker.length > 1) {
+        if (second.length == 1) {
+            second = "0" + second;
+        }
+    } else if (secondMarker.length == 0) {
+        second = "";
+    }
+
+    var dayMarker = formatter.replace(/[^w|W]/g, '');
+    var result = formatter.replace(yearMarker, year).replace(monthMarker, month).replace(dateMarker, date).replace(hourMarker, hour).replace(minuteMarker, minute).replace(secondMarker, second);
+    if (dayMarker.length != 0) {
+        result = result.replace(dayMarker, weekdays[lang][day]);
+    }
+
+    return result;
+};
+
  export function parseTime(time, cFormat) {
    if (arguments.length === 0) {
      return null;

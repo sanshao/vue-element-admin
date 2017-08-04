@@ -27,14 +27,6 @@ export const constantRouterMap = [
     name: '首页',
     hidden: true,
     children: [{ path: 'dashboard', component: _import('dashboard/index') }]
-  },
-  {
-    path: '/introduction',
-    component: Layout,
-    redirect: '/introduction/index',
-    icon: 'xinrenzhinan',
-    noDropdown: true,
-    children: [{ path: 'index', component: _import('introduction/index'), name: '简述' }]
   }
 ]
 
@@ -46,76 +38,88 @@ export default new Router({
 
 export const asyncRouterMap = [
   {
-    path: '/permission',
+    path: '/feed',
     component: Layout,
-    redirect: '/permission/index',
-    name: '权限测试',
-    icon: 'quanxian',
-    meta: { role: ['admin'] },
-    noDropdown: true,
-    children: [{ path: 'index', component: _import('permission/index'), name: '权限测试页', meta: { role: ['admin'] } }]
-  },
-  {
-    path: '/components',
-    component: Layout,
-    redirect: '/components/index',
-    name: '组件',
+    redirect: '/feed/index',
+    name: "动态",
     icon: 'zujian',
     children: [
-      { path: 'index', component: _import('components/index'), name: '介绍 ' },
-      { path: 'tinymce', component: _import('components/tinymce'), name: '富文本编辑器' },
-      { path: 'markdown', component: _import('components/markdown'), name: 'Markdown' },
-      { path: 'jsoneditor', component: _import('components/jsoneditor'), name: 'JSON编辑器' },
-      { path: 'dndlist', component: _import('components/dndlist'), name: '列表拖拽' },
-      { path: 'splitpane', component: _import('components/splitpane'), name: 'SplitPane' },
-      { path: 'avatarupload', component: _import('components/avatarUpload'), name: '头像上传' },
-      { path: 'dropzone', component: _import('components/dropzone'), name: 'Dropzone' },
-      { path: 'sticky', component: _import('components/sticky'), name: 'Sticky' },
-      { path: 'countto', component: _import('components/countTo'), name: 'CountTo' },
-      { path: 'mixin', component: _import('components/mixin'), name: '小组件' },
-      { path: 'backtotop', component: _import('components/backToTop'), name: '返回顶部' }
+      {
+        path: 'list',
+        component: _import('feed/list'),
+        name: '动态列表'
+      },
+      {
+        path: 'add',
+        component: _import('feed/add'),
+        name: '添加动态'
+      }
     ]
   },
   {
-    path: '/charts',
+    path: '/star',
     component: Layout,
-    redirect: '/charts/index',
-    name: '图表',
-    icon: 'tubiaoleixingzhengchang',
-    children: [
-      { path: 'index', component: _import('charts/index'), name: '介绍' },
-      { path: 'keyboard', component: _import('charts/keyboard'), name: '键盘图表' },
-      { path: 'keyboard2', component: _import('charts/keyboard2'), name: '键盘图表2' },
-      { path: 'line', component: _import('charts/line'), name: '折线图' },
-      { path: 'mixchart', component: _import('charts/mixChart'), name: '混合图表' }
-    ]
-  },
-  {
-    path: '/example',
-    component: Layout,
-    redirect: 'noredirect',
-    name: '综合实例',
-    icon: 'zonghe',
+    redirect: '/star/index',
+    name: "艺人",
+    icon: 'zujian',
     children: [
       {
-        path: '/example/table',
-        component: _import('example/table/index'),
-        redirect: '/example/table/table',
-        name: 'Table',
-        icon: 'table',
-        children: [
-          { path: 'dynamictable', component: _import('example/table/dynamictable'), name: '动态table' },
-          { path: 'dragtable', component: _import('example/table/dragTable'), name: '拖拽table' },
-          { path: 'inline_edit_table', component: _import('example/table/inlineEditTable'), name: 'table内编辑' },
-          { path: 'table', component: _import('example/table/table'), name: '综合table' }
-        ]
+        path: 'list',
+        // component: _import('feed/list'),
+        name: '艺人列表'
       },
-      { path: 'form/edit', icon: 'ziliaoshouce', component: _import('example/form'), name: '编辑Form', meta: { isEdit: true } },
-      { path: 'form/create', icon: 'yinhangqia', component: _import('example/form'), name: '创建Form' },
-
-      { path: 'tab/index', icon: 'mobankuangjia', component: _import('example/tab/index'), name: 'Tab' }
+      {
+        path: 'add-single',
+        // component: _import('feed/list'),
+        name: '添加明星'
+      },
+      {
+        path: 'add-combo',
+        // component: _import('feed/list'),
+        name: '添加组合'
+      },
+      {
+        path: 'sort',
+        // component: _import('feed/add'),
+        name: '艺人排序'
+      }
     ]
   },
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/index',
+    name: "用户",
+    icon: 'zujian',
+    children: [
+      {
+        path: 'list',
+        // component: _import('feed/list'),
+        name: '用户列表'
+      }
+    ],
+  },
+  // {
+  //   path: '/components',
+  //   component: Layout,
+  //   redirect: '/components/index',
+  //   name: '组件',
+  //   icon: 'zujian',
+  //   children: [
+  //     { path: 'index', component: _import('components/index'), name: '介绍 ' },
+  //     { path: 'tinymce', component: _import('components/tinymce'), name: '富文本编辑器' },
+  //     { path: 'markdown', component: _import('components/markdown'), name: 'Markdown' },
+  //     { path: 'jsoneditor', component: _import('components/jsoneditor'), name: 'JSON编辑器' },
+  //     { path: 'dndlist', component: _import('components/dndlist'), name: '列表拖拽' },
+  //     { path: 'splitpane', component: _import('components/splitpane'), name: 'SplitPane' },
+  //     { path: 'avatarupload', component: _import('components/avatarUpload'), name: '头像上传' },
+  //     { path: 'dropzone', component: _import('components/dropzone'), name: 'Dropzone' },
+  //     { path: 'sticky', component: _import('components/sticky'), name: 'Sticky' },
+  //     { path: 'countto', component: _import('components/countTo'), name: 'CountTo' },
+  //     { path: 'mixin', component: _import('components/mixin'), name: '小组件' },
+  //     { path: 'backtotop', component: _import('components/backToTop'), name: '返回顶部' }
+  //   ]
+  // },
   {
     path: '/errorpage',
     component: Layout,
@@ -128,26 +132,6 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/errlog',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'errlog',
-    icon: 'bug',
-    noDropdown: true,
-    children: [{ path: 'log', component: _import('errlog/index'), name: '错误日志' }]
-  },
-  {
-    path: '/excel',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'excel',
-    icon: 'EXCEL',
-    children: [
-      { path: 'download', component: _import('excel/index'), name: '导出excel' },
-      { path: 'download2', component: _import('excel/selectExcel'), name: '选择导出excel' }
-    ]
-  },
-  {
     path: '/theme',
     component: Layout,
     redirect: 'noredirect',
@@ -155,6 +139,16 @@ export const asyncRouterMap = [
     icon: 'theme',
     noDropdown: true,
     children: [{ path: 'index', component: _import('theme/index'), name: '换肤' }]
+  },
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission/index',
+    name: '权限测试',
+    icon: 'quanxian',
+    meta: { role: ['admin'] },
+    noDropdown: true,
+    children: [{ path: 'index', component: _import('permission/index'), name: '权限测试页', meta: { role: ['admin'] } }]
   },
 
   { path: '*', redirect: '/404', hidden: true }
